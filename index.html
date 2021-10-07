@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tienda de Juana</title>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		.Grande {
+			margin-left: auto;
+			margin-right: auto;
+			justify-content: center;
+			align-items: center;
+			width: 1000px;
+			height: 500px;	
+		}
+		.MedianoArriba {
+			width: 100%;
+			height: 250px;
+			display: flex;
+			margin-left: auto;
+			margin-right: auto;
+			justify-content: center;
+			align-items: center;
+			padding: 10px;
+		}
+		.MedianoAbajo {
+			width: 100%;
+			height: 250px;
+			display: flex;
+			margin-left: auto;
+			margin-right: auto;
+			justify-content: center;
+			align-items: center;
+			padding: 10px;	
+		}
+		.Mostrar {	
+			display: flex;
+			width: 1000px;
+			height: 100px;
+			margin-left: auto;
+			margin-right: auto;
+			justify-content: center;
+			align-items: center;
+		}
+		#operacionId {
+			width: 70px;
+			height: 40px;
+			background: rgb(55, 120, 230);
+			border: none;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>		
+	<div class="Mostrar">
+		<table>
+			<tr>
+				<th>Producto</th>
+				<th>Precio</th>
+				<th>Cantidad</th>
+			</tr>
+			<tr>
+				<td>Papitas</td>
+				<td>3500</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>Chocolatina</td>
+				<td>2500</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>Doritos</td>
+				<td>1500</td>
+				<td>10</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="Grande">
+		<div class="MedianoArriba">
+			<select name="" id="productoId">
+				<option value=""></option>
+				<option value="Papitas">Papitas</option>
+				<option value="Chocolatina">Chocolatina</option>
+				<option value="Doritos">Doritos</option>
+			</select>
+			<div class="cantidad"><input type="text" id="cantidadId" placeholder="Cantidad"></div>
+			<div class="dinero"><input type="text" id="dineroId" placeholder="Dinero"></div>
+			<input type="button" onclick="boton()" id="operacionId" value="Operacion">
+		</div>
+
+		<div class="MedianoAbajo">
+			<div id="Resultado"></div>
+			<div class="Idk"></div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+
+		function boton() {	
+			var producto=document.getElementById("productoId").value
+			var cantidad=document.getElementById("cantidadId").value
+			var dinero=document.getElementById("dineroId").value
+			var subtotal=0
+			var mensaje=""
+			if (cantidad<0){
+				alert("Cantidad incorrecta")
+				mensaje=""
+			}
+
+			else if(cantidad>10){
+				alert("Stock insuficiente")
+				mensaje=""
+			}
+			else{
+				switch (producto){
+					case "Papitas":
+					subtotal=cantidad*3500
+					break
+					case "Chocolatina":
+					subtotal=cantidad*2500
+					break
+					case "Doritos":
+					subtotal=cantidad*1500
+					break
+				}
+
+				if(dinero>=subtotal){
+					if (producto == "") {
+						mensaje = "No ha seleccionado productos para comprar!"
+					}
+					else {
+						mensaje="Compraste "+ cantidad + " " + producto + " y su devuelta es " + (dinero-subtotal)
+					}					
+				}
+				else{
+					alert("Fondos insuficientes")
+				}
+				document.getElementById("Resultado").innerHTML=mensaje
+			}
+		}
+	</script>
+</body>
+</html>
